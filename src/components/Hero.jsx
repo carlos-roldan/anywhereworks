@@ -19,20 +19,22 @@ function RotatingTerm() {
   return (
     <span className="relative mt-1 block sm:mt-2">
       {/* Longest term holds the line so the headline never jumps. */}
-      <span className="invisible" aria-hidden="true">
-        Contractors
+      <span className="text-brand-primary invisible" aria-hidden="true">
+        {'{Contractors}'}
       </span>
       {TERMS.map((term, i) => (
         <span
           key={term}
           aria-hidden={i !== index}
-          className={`absolute inset-0 transition-all duration-500 ease-out motion-reduce:transition-none ${
+          className={`text-brand-primary absolute inset-0 transition-all duration-500 ease-out motion-reduce:transition-none ${
             i === index
               ? 'translate-y-0 opacity-100'
               : 'translate-y-2 opacity-0 motion-reduce:translate-y-0'
           }`}
         >
+          {'{'}
           {term}
+          {'}'}
         </span>
       ))}
     </span>
@@ -60,18 +62,18 @@ export default function Hero() {
 
         <h1 className="font-display text-heading-xl mt-5 font-bold tracking-tight text-white sm:mt-6 sm:text-heading-2xl">
           <span className="sr-only">
-            Anywhere Works For: Lawyers, Clinics, Contractors, Agencies, and
+            AnywhereWorks For: Lawyers, Clinics, Contractors, Agencies, and
             Retailers
           </span>
           <span aria-hidden="true">
-            Anywhere Works For:
+            AnywhereWorks For:
             <RotatingTerm />
           </span>
         </h1>
 
         <p className="font-sans text-body-lg mx-auto mt-6 text-white/90 sm:mt-8 sm:max-w-none sm:text-body-xl">
           Real people answer the phone, book the job, and keep your business
-          running — whatever it is.
+          running.
         </p>
 
         <a

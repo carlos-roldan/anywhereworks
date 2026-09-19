@@ -21,6 +21,7 @@ const SOLUTIONS = [
     label: 'Field Trade Business',
     products: 'ServiceForge',
     href: 'https://serviceforge.com',
+    badge: 'NEW',
   },
   {
     label: 'Remote Agency',
@@ -33,6 +34,12 @@ const SOLUTIONS = [
     href: 'https://answerconnect.com',
   },
 ]
+
+// Near-black type on white (6.4:1). Brand blue is reserved for the hover /
+// open underline — using it as body-sized text on white fails AA the same
+// way white-on-blue did.
+const navItemClass =
+  'relative text-near-black text-sm font-medium sm:text-lg after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-brand-primary after:transition-transform after:duration-200 hover:after:scale-x-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-near-black'
 
 function SolutionsMenu() {
   const [open, setOpen] = useState(false)
@@ -93,7 +100,7 @@ function SolutionsMenu() {
         aria-expanded={open}
         aria-haspopup="true"
         onClick={() => setOpen((v) => !v)}
-        className="text-near-black flex cursor-pointer items-center gap-1.5 text-sm font-medium transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-near-black sm:text-lg"
+        className={`${navItemClass} flex cursor-pointer items-center gap-1.5 ${open ? 'after:scale-x-100' : ''}`}
       >
         Solutions
         <svg
@@ -135,8 +142,13 @@ function SolutionsMenu() {
                 <span className="text-near-black block text-sm font-semibold">
                   {item.label}
                 </span>
-                <span className="text-ink mt-0.5 block text-xs">
+                <span className="text-ink mt-0.5 flex items-center gap-2 text-xs">
                   {item.products}
+                  {item.badge ? (
+                    <span className="bg-serviceforge-accent text-forge-cream rounded-full px-1.5 py-px text-[10px] font-semibold tracking-wide">
+                      {item.badge}
+                    </span>
+                  ) : null}
                 </span>
               </a>
             </li>
@@ -150,10 +162,7 @@ function SolutionsMenu() {
 function NavLink({ children, href, className = '' }) {
   return (
     <li className={className}>
-      <a
-        href={href}
-        className="text-near-black text-sm font-medium transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-near-black sm:text-lg"
-      >
+      <a href={href} className={navItemClass}>
         {children}
       </a>
     </li>
@@ -162,7 +171,7 @@ function NavLink({ children, href, className = '' }) {
 
 export default function Nav() {
   return (
-    <header className="bg-brand-primary fixed inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-50 bg-white">
       <nav
         aria-label="Primary"
         className="h-nav-mobile sm:h-nav-aw flex items-center px-5 sm:px-10"
