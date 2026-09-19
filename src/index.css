@@ -58,10 +58,17 @@
   --text-meta-md--line-height: 1.25rem;
   --text-meta-md--letter-spacing: 1px;
 
-  /* Structure */
-  --height-nav-aw: 80px;
-  --height-nav-forge: 88px;
+  /* Structure. Nav heights sit in the --spacing-* namespace so one token
+     drives both the bar's own height and the matching content offset. */
+  --spacing-nav-aw: 80px;
+  --spacing-nav-mobile: 60px;
+  --spacing-nav-forge: 88px;
   --radius-cta: 28px;
+  --radius-dropdown: 4px;
+
+  /* AnywhereWorks switches its whole mobile/desktop nav at 650px, not
+     Tailwind's default 640px, so `sm:` is retuned to match the live site. */
+  --breakpoint-sm: 650px;
 
   /* ServiceForge hero overlay, used to darken photo/video backgrounds */
   --gradient-dark-overlay: linear-gradient(
