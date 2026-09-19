@@ -1,3 +1,4 @@
+import Hero from './components/Hero'
 import Nav from './components/Nav'
 
 function App() {
@@ -5,11 +6,15 @@ function App() {
     <>
       <Nav />
       <main className="pt-nav-mobile sm:pt-nav-aw">
-        <div className="flex min-h-[60vh] items-center justify-center px-5">
+        <Hero />
+        <section
+          id="solutions"
+          className="flex min-h-[50vh] items-center justify-center px-5"
+        >
           <p className="text-ink font-sans text-center text-body-lg">
-            Hero section next.
+            Solutions section next.
           </p>
-        </div>
+        </section>
       </main>
     </>
   )
