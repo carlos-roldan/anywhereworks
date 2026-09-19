@@ -1,1 +1,72 @@
 @import 'tailwindcss';
+
+/* TOKENS.md quotes class names in prose; without this Tailwind's automatic
+   source detection scans it and emits utilities nothing actually uses. */
+@source not './styles/**/*.md';
+
+/* Tokens extracted from the live anywhereworks.com and serviceforge.com
+   on 2026-09-19 at a 1920px viewport. See src/styles/TOKENS.md for the
+   element-by-element measurements and the known gaps. */
+@theme {
+  /* Typography. The real brand faces (Paralucent-AW, Simplon BP, delightFont)
+     are proprietary, so display and body are stand-ins loaded from Google
+     Fonts in index.html. Teko is ServiceForge's genuine display face. */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+  --font-condensed: 'Teko', sans-serif;
+
+  /* Lead brand color — AnywhereWorks blue, used for the nav and hero */
+  --color-brand-primary: #6699ff;
+  --color-ink: #40495b;
+  --color-near-black: #181818;
+
+  /* ServiceForge colors — read from its own exposed @theme variables.
+     The accent is deliberately namespaced, not a default brand token: it
+     belongs only on the ServiceForge Solutions card. */
+  --color-serviceforge-accent: #c94e2f;
+  --color-serviceforge-accent-dark: #963a23;
+  --color-forge-cream: #f9f9ea;
+  --color-forge-cream-deep: #f2f1db;
+  --color-forge-off-white: #fdfdf7;
+  --color-forge-black: #150808;
+  --color-forge-charcoal: #192525;
+  --color-forge-pale-blue: #61cefc;
+  --color-forge-gray-100: #e2e2e7;
+  --color-forge-gray-200: #999c9e;
+  --color-forge-gray-300: #707477;
+
+  /* Display scale — ServiceForge's published heading tokens */
+  --text-heading-3xl: 5.625rem;
+  --text-heading-3xl--line-height: 6.25rem;
+  --text-heading-2xl: 4rem;
+  --text-heading-2xl--line-height: 3.6rem;
+  --text-heading-xl: 3rem;
+  --text-heading-xl--line-height: 2.7rem;
+  --text-heading-lg: 2.5rem;
+  --text-heading-lg--line-height: 2.25rem;
+  --text-heading-md: 2rem;
+  --text-heading-md--line-height: 1.8rem;
+
+  /* Body scale */
+  --text-body-xl: 1.25rem;
+  --text-body-xl--line-height: 1.75rem;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.575rem;
+
+  /* Eyebrow / meta label — uppercase with 1px tracking on both sites */
+  --text-meta-md: 0.875rem;
+  --text-meta-md--line-height: 1.25rem;
+  --text-meta-md--letter-spacing: 1px;
+
+  /* Structure */
+  --height-nav-aw: 80px;
+  --height-nav-forge: 88px;
+  --radius-cta: 28px;
+
+  /* ServiceForge hero overlay, used to darken photo/video backgrounds */
+  --gradient-dark-overlay: linear-gradient(
+    270deg,
+    #1925254d 26.3%,
+    #192525 80.81%
+  );
+}
