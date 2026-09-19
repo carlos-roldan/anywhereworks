@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-
-// Traced from the mark on anywhereworks.com (viewBox 0 0 80 44). The live site
-// swaps this for a full wordmark path above 650px; here the mark is paired with
-// type instead, so the same glyph works at both sizes.
-const MARK_PATH =
-  'M74.5 0C77.537 0 80 2.462 80 5.5 80 8.538 77.537 11 74.5 11 71.462 11 69 8.538 69 5.5 69 2.462 71.462 0 74.5 0M26.5947 1L36.4617 1C36.7867 1 37.0797 1.197 37.2017 1.499L48.8767 30.198C48.9557 30.392 48.9557 30.608 48.8767 30.802L43.8697 43.09C43.7357 43.422 43.2647 43.422 43.1287 43.09L26.2237 1.551C26.1167 1.288 26.3107 1 26.5947 1M47.5947 1L57.4617 1C57.7867 1 58.0797 1.197 58.2017 1.499L69.8767 30.198C69.9557 30.392 69.9557 30.608 69.8767 30.802L64.8697 43.09C64.7357 43.422 64.2647 43.422 64.1287 43.09L47.2237 1.551C47.1167 1.288 47.3107 1 47.5947 1M32.4053 43L22.5383 43C22.2133 43 21.9203 42.803 21.7973 42.501L10.1223 13.802C10.0443 13.608 10.0443 13.392 10.1233 13.198L15.1293.91C15.2643.578 15.7343.578 15.8703.91L32.7753 42.449C32.8833 42.712 32.6893 43 32.4053 43M5.5 33C8.537 33 11 35.462 11 38.5 11 41.538 8.537 44 5.5 44 2.462 44 0 41.538 0 38.5 0 35.462 2.462 33 5.5 33'
+import {
+  MARK_PATH,
+  MARK_VIEWBOX,
+  WORDMARK_PATH,
+  WORDMARK_VIEWBOX,
+} from './logoPaths'
 
 const SOLUTIONS = [
   {
@@ -168,25 +168,28 @@ export default function Nav() {
         className="h-nav-mobile sm:h-nav-aw flex items-center px-5 sm:px-10"
       >
         {/* Two mutually exclusive logo states, mirroring the live site: it
-            swaps between an icon-only SVG and a dedicated wordmark SVG at
-            650px and never shows both. The wordmark is set in type here
-            rather than embedding their proprietary logotype path. */}
+            swaps between the compact mark and the full logotype at 650px and
+            never shows both. Widths match its .navbar__logo rules (40px
+            below the breakpoint, 224px above). */}
         <a
           href="/"
           aria-label="AnywhereWorks home"
           className="text-near-black mr-auto flex items-center transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-near-black"
         >
           <svg
-            viewBox="0 0 80 44"
+            viewBox={MARK_VIEWBOX}
             aria-hidden="true"
-            className="h-5 w-9 sm:hidden"
+            className="h-auto w-10 sm:hidden"
           >
             <path d={MARK_PATH} fill="currentColor" fillRule="evenodd" />
           </svg>
-          {/* 28px matches the rendered height of the live 888x112 wordmark. */}
-          <span className="font-display hidden text-[1.75rem] font-bold leading-none tracking-tight sm:block">
-            AnywhereWorks
-          </span>
+          <svg
+            viewBox={WORDMARK_VIEWBOX}
+            aria-hidden="true"
+            className="hidden h-auto w-56 sm:block"
+          >
+            <path d={WORDMARK_PATH} fill="currentColor" fillRule="evenodd" />
+          </svg>
         </a>
 
         <ul className="flex items-center gap-4 sm:gap-[30px]">
