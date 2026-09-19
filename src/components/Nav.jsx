@@ -167,15 +167,24 @@ export default function Nav() {
         aria-label="Primary"
         className="h-nav-mobile sm:h-nav-aw flex items-center px-5 sm:px-10"
       >
+        {/* Two mutually exclusive logo states, mirroring the live site: it
+            swaps between an icon-only SVG and a dedicated wordmark SVG at
+            650px and never shows both. The wordmark is set in type here
+            rather than embedding their proprietary logotype path. */}
         <a
           href="/"
           aria-label="AnywhereWorks home"
-          className="text-near-black mr-auto flex items-center gap-2.5 transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-near-black"
+          className="text-near-black mr-auto flex items-center transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-near-black"
         >
-          <svg viewBox="0 0 80 44" aria-hidden="true" className="h-5 w-9 sm:h-6">
+          <svg
+            viewBox="0 0 80 44"
+            aria-hidden="true"
+            className="h-5 w-9 sm:hidden"
+          >
             <path d={MARK_PATH} fill="currentColor" fillRule="evenodd" />
           </svg>
-          <span className="font-display hidden text-xl font-bold tracking-tight sm:block">
+          {/* 28px matches the rendered height of the live 888x112 wordmark. */}
+          <span className="font-display hidden text-[1.75rem] font-bold leading-none tracking-tight sm:block">
             AnywhereWorks
           </span>
         </a>
@@ -184,8 +193,12 @@ export default function Nav() {
           <NavLink href="#mission">Mission</NavLink>
           <NavLink href="#products">Products</NavLink>
           <SolutionsMenu />
-          <NavLink href="#careers">Careers</NavLink>
-          {/* The live site hides Contact below 650px via .phone-hide */}
+          {/* The live site hides Contact below 650px via .phone-hide. Careers
+              follows the same pattern here by choice — the live site keeps it
+              on mobile, but the footer already covers it. */}
+          <NavLink href="#careers" className="hidden sm:block">
+            Careers
+          </NavLink>
           <NavLink href="#contact" className="hidden sm:block">
             Contact
           </NavLink>
